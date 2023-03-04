@@ -13,14 +13,14 @@ import Register from './components/auth/Register';
 import {SafeAreaView, Text} from 'react-native';
 const Stack = createNativeStackNavigator();
 function App(): JSX.Element {
+  const [loaded, setLoaded] = useState<boolean>(false);
+  const [loggedIn, setLoggedIn] = useState<boolean>(false);
   const screenOptions = {
     headerShown: false,
   };
-  const [loaded, setLoaded] = useState<boolean>(false);
-  const [loggedIn, setLoggedIn] = useState<boolean>(false);
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home" screenOptions={screenOptions}>
+      <Stack.Navigator initialRouteName="login" screenOptions={screenOptions}>
         <Stack.Screen name="login" component={Login} />
         <Stack.Screen name="register" component={Register} />
       </Stack.Navigator>
