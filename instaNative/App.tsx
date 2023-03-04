@@ -5,23 +5,26 @@
  * @format
  */
 
-import React from 'react';
-
-import {SafeAreaView, Text, useColorScheme} from 'react-native';
-
-import {Colors} from 'react-native/Libraries/NewAppScreen';
-
+import {NavigationContainer} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import React, {useState} from 'react';
+import Login from './components/auth/Login';
+import Register from './components/auth/Register';
+import {SafeAreaView, Text} from 'react-native';
+const Stack = createNativeStackNavigator();
 function App(): JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
+  const screenOptions = {
+    headerShown: false,
   };
-
+  const [loaded, setLoaded] = useState<boolean>(false);
+  const [loggedIn, setLoggedIn] = useState<boolean>(false);
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <Text>zzzzz</Text>
-    </SafeAreaView>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Home" screenOptions={screenOptions}>
+        <Stack.Screen name="login" component={Login} />
+        <Stack.Screen name="register" component={Register} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
